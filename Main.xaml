@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="603.3333333333334,3077.3333333333335" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="610,3188" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -31,6 +31,7 @@
       <x:String>UiPath.CSV</x:String>
       <x:String>UiPath.CSV.Activities</x:String>
       <x:String>System.Reflection</x:String>
+      <x:String>UiPath.Shared.Activities.Business</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -84,15 +85,20 @@
       <AssemblyReference>System.Memory</AssemblyReference>
       <AssemblyReference>System.Private.Uri</AssemblyReference>
       <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="558,3012.6666666666665" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Main Sequence" sap:VirtualizedContainerService.HintSize="620,3123.3333333333335" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence sap:VirtualizedContainerService.HintSize="496,2902" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence sap:VirtualizedContainerService.HintSize="558,3012.6666666666665" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <Sequence.Variables>
         <Variable x:TypeArguments="sd:DataTable" Name="AdrianDt" />
         <Variable x:TypeArguments="sd:DataTable" Name="BensDt" />
@@ -101,32 +107,35 @@
         <Variable x:TypeArguments="sd:DataTable" Name="Com21Dt" />
         <Variable x:TypeArguments="sd:DataTable" Name="FiresideDt" />
         <Variable x:TypeArguments="sd:DataTable" Name="OptimaxDt" />
-        <Variable x:TypeArguments="sd:DataTable" Name="MergeDt">
-          <Variable.Default>
-            <VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="New System.Data.DataTable" />
-          </Variable.Default>
-        </Variable>
+        <Variable x:TypeArguments="sd:DataTable" Default="[New System.Data.DataTable]" Name="MergeDt" />
       </Sequence.Variables>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:ReadCsvFile DataTable="[AdrianDt]" Delimitator="Comma" DisplayName="Read CSV - Adrian" FilePath="Adrian_oct23.csv" sap:VirtualizedContainerService.HintSize="434,159.33333333333334" sap2010:WorkflowViewState.IdRef="ReadCsvFile_1" />
-      <ui:ReadCsvFile DataTable="[BensDt]" Delimitator="Comma" DisplayName="Read CSV - Bens" FilePath="Bens_oct23.csv" sap:VirtualizedContainerService.HintSize="434,159.33333333333334" sap2010:WorkflowViewState.IdRef="ReadCsvFile_6" />
-      <ui:ReadCsvFile DataTable="[BroadcomDt]" Delimitator="Comma" DisplayName="Read CSV - Broadcom" FilePath="Broadcom_oct23.csv" sap:VirtualizedContainerService.HintSize="434,159.33333333333334" sap2010:WorkflowViewState.IdRef="ReadCsvFile_5" />
-      <ui:ReadCsvFile DataTable="[BtnDt]" Delimitator="Comma" DisplayName="Read CSV - BTN" FilePath="BTN_oct23.csv" sap:VirtualizedContainerService.HintSize="434,159.33333333333334" sap2010:WorkflowViewState.IdRef="ReadCsvFile_4" />
-      <ui:ReadCsvFile DataTable="[Com21Dt]" Delimitator="Comma" DisplayName="Read CSV - Com21" FilePath="Com21_oct23.csv" sap:VirtualizedContainerService.HintSize="434,159.33333333333334" sap2010:WorkflowViewState.IdRef="ReadCsvFile_2" />
-      <ui:ReadCsvFile DataTable="[FiresideDt]" Delimitator="Comma" DisplayName="Read CSV - Fireside" FilePath="Fireside_oct23.csv" sap:VirtualizedContainerService.HintSize="434,159.33333333333334" sap2010:WorkflowViewState.IdRef="ReadCsvFile_3" />
-      <ui:ReadCsvFile DataTable="[OptimaxDt]" Delimitator="Comma" DisplayName="Read CSV" FilePath="optimax_oct23.csv" sap:VirtualizedContainerService.HintSize="434,159.33333333333334" sap2010:WorkflowViewState.IdRef="ReadCsvFile_7" />
-      <ui:MergeDataTable Destination="[MergeDt]" DisplayName="Merge Data Table" sap:VirtualizedContainerService.HintSize="434,136.66666666666666" sap2010:WorkflowViewState.IdRef="MergeDataTable_1" MissingSchemaAction="Add" Source="[AdrianDt]" />
-      <ui:MergeDataTable Destination="[MergeDt]" DisplayName="Merge Data Table" sap:VirtualizedContainerService.HintSize="434,136.66666666666666" sap2010:WorkflowViewState.IdRef="MergeDataTable_2" MissingSchemaAction="Add" Source="[BensDt]" />
-      <ui:MergeDataTable Destination="[MergeDt]" DisplayName="Merge Data Table" sap:VirtualizedContainerService.HintSize="434,136.66666666666666" sap2010:WorkflowViewState.IdRef="MergeDataTable_4" MissingSchemaAction="Add" Source="[BroadcomDt]" />
-      <ui:MergeDataTable Destination="[MergeDt]" DisplayName="Merge Data Table" sap:VirtualizedContainerService.HintSize="434,136.66666666666666" sap2010:WorkflowViewState.IdRef="MergeDataTable_5" MissingSchemaAction="Add" Source="[BtnDt]" />
-      <ui:MergeDataTable Destination="[MergeDt]" DisplayName="Merge Data Table" sap:VirtualizedContainerService.HintSize="434,136.66666666666666" sap2010:WorkflowViewState.IdRef="MergeDataTable_3" MissingSchemaAction="Add" Source="[Com21Dt]" />
-      <ui:MergeDataTable Destination="[MergeDt]" DisplayName="Merge Data Table" sap:VirtualizedContainerService.HintSize="434,136.66666666666666" sap2010:WorkflowViewState.IdRef="MergeDataTable_6" MissingSchemaAction="Add" Source="[FiresideDt]" />
-      <ui:MergeDataTable Destination="[MergeDt]" DisplayName="Merge Data Table" sap:VirtualizedContainerService.HintSize="434,136.66666666666666" sap2010:WorkflowViewState.IdRef="MergeDataTable_7" MissingSchemaAction="Add" Source="[OptimaxDt]" />
-      <ui:WriteCsvFile AddHeaders="True" DataTable="[MergeDt]" Delimitator="Comma" DisplayName="Write CSV" FilePath="Combined.csv" sap:VirtualizedContainerService.HintSize="434,159.33333333333334" sap2010:WorkflowViewState.IdRef="WriteCsvFile_1" ShouldQuote="True" />
+      <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="496,270" sap2010:WorkflowViewState.IdRef="Sequence_3">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <ui:ReadCsvFile DataTable="[AdrianDt]" Delimitator="Comma" DisplayName="Read CSV - Adrian" FilePath="Adrian_oct23.csv" sap:VirtualizedContainerService.HintSize="434,159.33333333333334" sap2010:WorkflowViewState.IdRef="ReadCsvFile_9" />
+      </Sequence>
+      <ui:ReadCsvFile DataTable="[BensDt]" Delimitator="Comma" DisplayName="Read CSV - Bens" FilePath="Bens_oct23.csv" sap:VirtualizedContainerService.HintSize="496,159.33333333333334" sap2010:WorkflowViewState.IdRef="ReadCsvFile_6" />
+      <ui:ReadCsvFile DataTable="[BroadcomDt]" Delimitator="Comma" DisplayName="Read CSV - Broadcom" FilePath="Broadcom_oct23.csv" sap:VirtualizedContainerService.HintSize="496,159.33333333333334" sap2010:WorkflowViewState.IdRef="ReadCsvFile_5" />
+      <ui:ReadCsvFile DataTable="[BtnDt]" Delimitator="Comma" DisplayName="Read CSV - BTN" FilePath="BTN_oct23.csv" sap:VirtualizedContainerService.HintSize="496,159.33333333333334" sap2010:WorkflowViewState.IdRef="ReadCsvFile_4" />
+      <ui:ReadCsvFile DataTable="[Com21Dt]" Delimitator="Comma" DisplayName="Read CSV - Com21" FilePath="Com21_oct23.csv" sap:VirtualizedContainerService.HintSize="496,159.33333333333334" sap2010:WorkflowViewState.IdRef="ReadCsvFile_2" />
+      <ui:ReadCsvFile DataTable="[FiresideDt]" Delimitator="Comma" DisplayName="Read CSV - Fireside" FilePath="Fireside_oct23.csv" sap:VirtualizedContainerService.HintSize="496,159.33333333333334" sap2010:WorkflowViewState.IdRef="ReadCsvFile_3" />
+      <ui:ReadCsvFile DataTable="[OptimaxDt]" Delimitator="Comma" DisplayName="Read CSV - Optimax" FilePath="optimax_oct23.csv" sap:VirtualizedContainerService.HintSize="496,159.33333333333334" sap2010:WorkflowViewState.IdRef="ReadCsvFile_7" />
+      <ui:MergeDataTable Destination="[MergeDt]" DisplayName="Merge Data Table" sap:VirtualizedContainerService.HintSize="496,136.66666666666666" sap2010:WorkflowViewState.IdRef="MergeDataTable_1" MissingSchemaAction="Add" Source="[AdrianDt]" />
+      <ui:MergeDataTable Destination="[MergeDt]" DisplayName="Merge Data Table" sap:VirtualizedContainerService.HintSize="496,136.66666666666666" sap2010:WorkflowViewState.IdRef="MergeDataTable_2" MissingSchemaAction="Add" Source="[BensDt]" />
+      <ui:MergeDataTable Destination="[MergeDt]" DisplayName="Merge Data Table" sap:VirtualizedContainerService.HintSize="496,136.66666666666666" sap2010:WorkflowViewState.IdRef="MergeDataTable_4" MissingSchemaAction="Add" Source="[BroadcomDt]" />
+      <ui:MergeDataTable Destination="[MergeDt]" DisplayName="Merge Data Table" sap:VirtualizedContainerService.HintSize="496,136.66666666666666" sap2010:WorkflowViewState.IdRef="MergeDataTable_5" MissingSchemaAction="Add" Source="[BtnDt]" />
+      <ui:MergeDataTable Destination="[MergeDt]" DisplayName="Merge Data Table" sap:VirtualizedContainerService.HintSize="496,136.66666666666666" sap2010:WorkflowViewState.IdRef="MergeDataTable_3" MissingSchemaAction="Add" Source="[Com21Dt]" />
+      <ui:MergeDataTable Destination="[MergeDt]" DisplayName="Merge Data Table" sap:VirtualizedContainerService.HintSize="496,136.66666666666666" sap2010:WorkflowViewState.IdRef="MergeDataTable_6" MissingSchemaAction="Add" Source="[FiresideDt]" />
+      <ui:MergeDataTable Destination="[MergeDt]" DisplayName="Merge Data Table" sap:VirtualizedContainerService.HintSize="496,136.66666666666666" sap2010:WorkflowViewState.IdRef="MergeDataTable_7" MissingSchemaAction="Add" Source="[OptimaxDt]" />
+      <ui:WriteCsvFile AddHeaders="True" DataTable="[MergeDt]" Delimitator="Comma" DisplayName="Write CSV" FilePath="Combined.csv" sap:VirtualizedContainerService.HintSize="496,159.33333333333334" sap2010:WorkflowViewState.IdRef="WriteCsvFile_1" ShouldQuote="True" />
     </Sequence>
   </Sequence>
 </Activity>
